@@ -1,0 +1,242 @@
+{
+	"greeting": "Chào mừng đến với PearAI Agent (Powered by Roo Code / Cline)",
+	"task": {
+		"title": "Nhiệm vụ",
+		"seeMore": "Xem thêm",
+		"seeLess": "Thu gọn",
+		"tokens": "Tokens:",
+		"cache": "Bộ nhớ đệm:",
+		"apiCost": "Chi phí API:",
+		"contextWindow": "Chiều dài bối cảnh:",
+		"closeAndStart": "Đóng nhiệm vụ và bắt đầu nhiệm vụ mới",
+		"export": "Xuất lịch sử nhiệm vụ",
+		"delete": "Xóa nhiệm vụ (Shift + Click để bỏ qua xác nhận)"
+	},
+	"unpin": "Bỏ ghim khỏi đầu",
+	"pin": "Ghim lên đầu",
+	"tokenProgress": {
+		"availableSpace": "Không gian khả dụng: {{amount}} tokens",
+		"tokensUsed": "Tokens đã sử dụng: {{used}} trong {{total}}",
+		"reservedForResponse": "Dành riêng cho phản hồi mô hình: {{amount}} tokens"
+	},
+	"retry": {
+		"title": "Thử lại",
+		"tooltip": "Thử lại thao tác"
+	},
+	"startNewTask": {
+		"title": "Bắt đầu nhiệm vụ mới",
+		"tooltip": "Bắt đầu một nhiệm vụ mới"
+	},
+	"proceedAnyways": {
+		"title": "Vẫn tiếp tục",
+		"tooltip": "Tiếp tục trong khi lệnh đang chạy"
+	},
+	"save": {
+		"title": "Lưu",
+		"tooltip": "Lưu các thay đổi tệp"
+	},
+	"reject": {
+		"title": "Từ chối",
+		"tooltip": "Từ chối hành động này"
+	},
+	"completeSubtaskAndReturn": "Hoàn thành nhiệm vụ phụ và quay lại",
+	"approve": {
+		"title": "Phê duyệt",
+		"tooltip": "Phê duyệt hành động này"
+	},
+	"runCommand": {
+		"title": "Chạy lệnh",
+		"tooltip": "Thực thi lệnh này"
+	},
+	"proceedWhileRunning": {
+		"title": "Tiếp tục trong khi chạy",
+		"tooltip": "Tiếp tục bất chấp cảnh báo"
+	},
+	"killCommand": {
+		"title": "Dừng lệnh",
+		"tooltip": "Dừng lệnh hiện tại"
+	},
+	"resumeTask": {
+		"title": "Tiếp tục nhiệm vụ",
+		"tooltip": "Tiếp tục nhiệm vụ hiện tại"
+	},
+	"terminate": {
+		"title": "Kết thúc",
+		"tooltip": "Kết thúc nhiệm vụ hiện tại"
+	},
+	"cancel": {
+		"title": "Hủy",
+		"tooltip": "Hủy thao tác hiện tại"
+	},
+	"scrollToBottom": "Cuộn xuống cuối cuộc trò chuyện",
+	"about": "Tạo, tái cấu trúc và gỡ lỗi mã bằng sự hỗ trợ của AI.<br />Kiểm tra <DocsLink>tài liệu</DocsLink> của chúng tôi để tìm hiểu thêm.",
+	"onboarding": "<strong>Danh sách nhiệm vụ của bạn trong không gian làm việc này trống.</strong> Bắt đầu bằng cách nhập nhiệm vụ bên dưới. Bạn không chắc chắn nên bắt đầu như thế nào? Đọc thêm về những gì Agent có thể làm cho bạn trong <DocsLink>tài liệu</DocsLink>.",
+	"rooTips": {
+		"boomerangTasks": {
+			"title": "Nhiệm vụ Boomerang",
+			"description": "Chia nhỏ các nhiệm vụ thành các phần nhỏ hơn, dễ quản lý hơn."
+		},
+		"stickyModels": {
+			"title": "Chế độ dính",
+			"description": "Mỗi chế độ ghi nhớ mô hình đã sử dụng cuối cùng của bạn"
+		},
+		"tools": {
+			"title": "Công cụ",
+			"description": "Cho phép AI giải quyết vấn đề bằng cách duyệt web, chạy lệnh, v.v."
+		},
+		"customizableModes": {
+			"title": "Chế độ tùy chỉnh",
+			"description": "Các nhân vật chuyên biệt với hành vi riêng và mô hình được chỉ định"
+		}
+	},
+	"selectMode": "Chọn chế độ tương tác",
+	"selectApiConfig": "Chọn cấu hình API",
+	"enhancePrompt": "Nâng cao yêu cầu với ngữ cảnh bổ sung",
+	"addImages": "Thêm hình ảnh vào tin nhắn",
+	"sendMessage": "Gửi tin nhắn",
+	"typeMessage": "Nhập tin nhắn...",
+	"typeTask": "Nhập nhiệm vụ của bạn tại đây...",
+	"addContext": "@ để thêm ngữ cảnh, / để chuyển chế độ",
+	"dragFiles": "giữ shift để kéo tệp",
+	"dragFilesImages": "giữ shift để kéo tệp/hình ảnh",
+	"enhancePromptDescription": "Nút 'Nâng cao yêu cầu' giúp cải thiện yêu cầu của bạn bằng cách cung cấp ngữ cảnh bổ sung, làm rõ hoặc diễn đạt lại. Hãy thử nhập yêu cầu tại đây và nhấp vào nút một lần nữa để xem cách thức hoạt động.",
+	"errorReadingFile": "Lỗi khi đọc tệp:",
+	"noValidImages": "Không có hình ảnh hợp lệ nào được xử lý",
+	"separator": "Dấu phân cách",
+	"edit": "Chỉnh sửa...",
+	"forNextMode": "cho chế độ tiếp theo",
+	"error": "Lỗi",
+	"diffError": {
+		"title": "Chỉnh sửa không thành công"
+	},
+	"troubleMessage": "Agent đang gặp sự cố...",
+	"apiRequest": {
+		"title": "Yêu cầu API",
+		"failed": "Yêu cầu API thất bại",
+		"streaming": "Yêu cầu API...",
+		"cancelled": "Yêu cầu API đã hủy",
+		"streamingFailed": "Streaming API thất bại"
+	},
+	"checkpoint": {
+		"initial": "Điểm kiểm tra ban đầu",
+		"regular": "Điểm kiểm tra",
+		"initializingWarning": "Đang khởi tạo điểm kiểm tra... Nếu quá trình này mất quá nhiều thời gian, bạn có thể vô hiệu hóa điểm kiểm tra trong <settingsLink>cài đặt</settingsLink> và khởi động lại tác vụ của bạn.",
+		"menu": {
+			"viewDiff": "Xem khác biệt",
+			"restore": "Khôi phục điểm kiểm tra",
+			"restoreFiles": "Khôi phục tệp",
+			"restoreFilesDescription": "Khôi phục các tệp dự án của bạn về bản chụp được thực hiện tại thời điểm này.",
+			"restoreFilesAndTask": "Khôi phục tệp & nhiệm vụ",
+			"confirm": "Xác nhận",
+			"cancel": "Hủy",
+			"cannotUndo": "Hành động này không thể hoàn tác.",
+			"restoreFilesAndTaskDescription": "Khôi phục các tệp dự án của bạn về bản chụp được thực hiện tại thời điểm này và xóa tất cả tin nhắn sau điểm này."
+		},
+		"current": "Hiện tại"
+	},
+	"instructions": {
+		"wantsToFetch": "Agent muốn lấy hướng dẫn chi tiết để hỗ trợ nhiệm vụ hiện tại"
+	},
+	"fileOperations": {
+		"wantsToRead": "Agent muốn đọc tệp này:",
+		"wantsToReadOutsideWorkspace": "Agent muốn đọc tệp này bên ngoài không gian làm việc:",
+		"didRead": "Agent đã đọc tệp này:",
+		"wantsToEdit": "Agent muốn chỉnh sửa tệp này:",
+		"wantsToEditOutsideWorkspace": "Agent muốn chỉnh sửa tệp này bên ngoài không gian làm việc:",
+		"wantsToCreate": "Agent muốn tạo một tệp mới:",
+		"wantsToSearchReplace": "Agent muốn thực hiện tìm kiếm và thay thế trong tệp này:",
+		"didSearchReplace": "Agent đã thực hiện tìm kiếm và thay thế trong tệp này:",
+		"wantsToInsert": "Agent muốn chèn nội dung vào tệp này:",
+		"wantsToInsertWithLineNumber": "Agent muốn chèn nội dung vào dòng {{lineNumber}} của tệp này:",
+		"wantsToInsertAtEnd": "Agent muốn thêm nội dung vào cuối tệp này:"
+	},
+	"directoryOperations": {
+		"wantsToViewTopLevel": "Agent muốn xem các tệp cấp cao nhất trong thư mục này:",
+		"didViewTopLevel": "Agent đã xem các tệp cấp cao nhất trong thư mục này:",
+		"wantsToViewRecursive": "Agent muốn xem đệ quy tất cả các tệp trong thư mục này:",
+		"didViewRecursive": "Agent đã xem đệ quy tất cả các tệp trong thư mục này:",
+		"wantsToViewDefinitions": "Agent muốn xem tên định nghĩa mã nguồn được sử dụng trong thư mục này:",
+		"didViewDefinitions": "Agent đã xem tên định nghĩa mã nguồn được sử dụng trong thư mục này:",
+		"wantsToSearch": "Agent muốn tìm kiếm trong thư mục này cho <code>{{regex}}</code>:",
+		"didSearch": "Agent đã tìm kiếm trong thư mục này cho <code>{{regex}}</code>:"
+	},
+	"commandOutput": "Kết quả lệnh",
+	"response": "Phản hồi",
+	"arguments": "Tham số",
+	"mcp": {
+		"wantsToUseTool": "Agent muốn sử dụng một công cụ trên máy chủ MCP {{serverName}}:",
+		"wantsToAccessResource": "Agent muốn truy cập một tài nguyên trên máy chủ MCP {{serverName}}:"
+	},
+	"modes": {
+		"wantsToSwitch": "Agent muốn chuyển sang chế độ <code>{{mode}}</code>",
+		"wantsToSwitchWithReason": "Agent muốn chuyển sang chế độ <code>{{mode}}</code> vì: {{reason}}",
+		"didSwitch": "Agent đã chuyển sang chế độ <code>{{mode}}</code>",
+		"didSwitchWithReason": "Agent đã chuyển sang chế độ <code>{{mode}}</code> vì: {{reason}}"
+	},
+	"subtasks": {
+		"wantsToCreate": "Agent muốn tạo một nhiệm vụ phụ mới trong chế độ <code>{{mode}}</code>:",
+		"wantsToFinish": "Agent muốn hoàn thành nhiệm vụ phụ này",
+		"newTaskContent": "Hướng dẫn nhiệm vụ phụ",
+		"completionContent": "Nhiệm vụ phụ đã hoàn thành",
+		"resultContent": "Kết quả nhiệm vụ phụ",
+		"defaultResult": "Vui lòng tiếp tục với nhiệm vụ tiếp theo.",
+		"completionInstructions": "Nhiệm vụ phụ đã hoàn thành! Bạn có thể xem lại kết quả và đề xuất các sửa đổi hoặc bước tiếp theo. Nếu mọi thứ có vẻ tốt, hãy xác nhận để trả kết quả về nhiệm vụ chính."
+	},
+	"questions": {
+		"hasQuestion": "Agent có một câu hỏi:"
+	},
+	"taskCompleted": "Nhiệm vụ hoàn thành",
+	"powershell": {
+		"issues": "Có vẻ như bạn đang gặp vấn đề với Windows PowerShell, vui lòng xem"
+	},
+	"autoApprove": {
+		"title": "Tự động phê duyệt:",
+		"none": "Không",
+		"description": "Tự động phê duyệt cho phép PearAI Agent (Powered by Roo Code / Cline) thực hiện hành động mà không cần xin phép. Chỉ bật cho các hành động bạn hoàn toàn tin tưởng. Cấu hình chi tiết hơn có sẵn trong <settingsLink>Cài đặt</settingsLink>."
+	},
+	"reasoning": {
+		"thinking": "Đang suy nghĩ",
+		"seconds": "{{count}} giây"
+	},
+	"followUpSuggest": {
+		"copyToInput": "Sao chép vào ô nhập liệu (hoặc Shift + nhấp chuột)"
+	},
+	"announcement": {
+		"title": "🎉 PearAI Agent (Powered by Roo Code / Cline) 3.15 Đã phát hành",
+		"description": "Agent Code 3.15 mang đến các tính năng và cải tiến mới dựa trên phản hồi của bạn.",
+		"whatsNew": "Có gì mới",
+		"feature1": "<bold>Bộ nhớ đệm lời nhắc cho Vertex</bold>: Đã thêm hỗ trợ bộ nhớ đệm lời nhắc cho Vertex AI, cải thiện thời gian phản hồi và giảm chi phí API",
+		"feature2": "<bold>Cơ chế dự phòng cho Terminal</bold>: Đã triển khai cơ chế dự phòng khi tích hợp shell terminal VSCode gặp sự cố",
+		"feature3": "<bold>Cải thiện đoạn mã</bold>: Nâng cao hiển thị và tương tác với đoạn mã trong giao diện trò chuyện",
+		"hideButton": "Ẩn thông báo",
+		"detailsDiscussLinks": "Nhận thêm chi tiết và thảo luận tại <discordLink>Discord</discordLink> và <redditLink>Reddit</redditLink> 🚀"
+	},
+	"browser": {
+		"rooWantsToUse": "Agent muốn sử dụng trình duyệt:",
+		"consoleLogs": "Nhật ký bảng điều khiển",
+		"noNewLogs": "(Không có nhật ký mới)",
+		"screenshot": "Ảnh chụp màn hình trình duyệt",
+		"cursor": "con trỏ",
+		"navigation": {
+			"step": "Bước {{current}} / {{total}}",
+			"previous": "Trước",
+			"next": "Tiếp"
+		},
+		"sessionStarted": "Phiên trình duyệt đã bắt đầu",
+		"actions": {
+			"title": "Hành động trình duyệt: ",
+			"launch": "Khởi chạy trình duyệt tại {{url}}",
+			"click": "Nhấp ({{coordinate}})",
+			"type": "Gõ \"{{text}}\"",
+			"scrollDown": "Cuộn xuống",
+			"scrollUp": "Cuộn lên",
+			"close": "Đóng trình duyệt"
+		}
+	},
+	"systemPromptWarning": "CẢNH BÁO: Đã kích hoạt ghi đè lệnh nhắc hệ thống tùy chỉnh. Điều này có thể phá vỡ nghiêm trọng chức năng và gây ra hành vi không thể dự đoán.",
+	"shellIntegration": {
+		"title": "Cảnh báo thực thi lệnh",
+		"description": "Lệnh của bạn đang được thực thi mà không có tích hợp shell terminal VSCode. Để ẩn cảnh báo này, bạn có thể vô hiệu hóa tích hợp shell trong phần <strong>Terminal</strong> của <settingsLink>cài đặt PearAI Agent (Powered by Roo Code / Cline)</settingsLink> hoặc khắc phục sự cố tích hợp terminal VSCode bằng liên kết bên dưới.",
+		"troubleshooting": "Nhấp vào đây để xem tài liệu tích hợp shell."
+	}
+}

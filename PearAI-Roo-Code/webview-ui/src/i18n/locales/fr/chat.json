@@ -1,0 +1,242 @@
+{
+	"greeting": "Bienvenue sur PearAI Agent (Powered by Roo Code / Cline)",
+	"task": {
+		"title": "Tâche",
+		"seeMore": "Voir plus",
+		"seeLess": "Voir moins",
+		"tokens": "Tokens :",
+		"cache": "Cache :",
+		"apiCost": "Coût API :",
+		"contextWindow": "Durée du contexte :",
+		"closeAndStart": "Fermer la tâche et en commencer une nouvelle",
+		"export": "Exporter l'historique des tâches",
+		"delete": "Supprimer la tâche (Shift + Clic pour ignorer la confirmation)"
+	},
+	"unpin": "Désépingler",
+	"pin": "Épingler",
+	"tokenProgress": {
+		"availableSpace": "Espace disponible : {{amount}} tokens",
+		"tokensUsed": "Tokens utilisés : {{used}} sur {{total}}",
+		"reservedForResponse": "Réservé pour la réponse du modèle : {{amount}} tokens"
+	},
+	"retry": {
+		"title": "Réessayer",
+		"tooltip": "Tenter à nouveau l'opération"
+	},
+	"startNewTask": {
+		"title": "Commencer une nouvelle tâche",
+		"tooltip": "Démarrer une nouvelle tâche"
+	},
+	"proceedAnyways": {
+		"title": "Continuer quand même",
+		"tooltip": "Continuer pendant l'exécution de la commande"
+	},
+	"save": {
+		"title": "Enregistrer",
+		"tooltip": "Sauvegarder les modifications du fichier"
+	},
+	"reject": {
+		"title": "Rejeter",
+		"tooltip": "Rejeter cette action"
+	},
+	"completeSubtaskAndReturn": "Terminer la sous-tâche et revenir",
+	"approve": {
+		"title": "Approuver",
+		"tooltip": "Approuver cette action"
+	},
+	"runCommand": {
+		"title": "Exécuter la commande",
+		"tooltip": "Exécuter cette commande"
+	},
+	"proceedWhileRunning": {
+		"title": "Continuer pendant l'exécution",
+		"tooltip": "Continuer malgré les avertissements"
+	},
+	"killCommand": {
+		"title": "Arrêter la commande",
+		"tooltip": "Arrêter la commande actuelle"
+	},
+	"resumeTask": {
+		"title": "Reprendre la tâche",
+		"tooltip": "Continuer la tâche actuelle"
+	},
+	"terminate": {
+		"title": "Terminer",
+		"tooltip": "Terminer la tâche actuelle"
+	},
+	"cancel": {
+		"title": "Annuler",
+		"tooltip": "Annuler l'opération actuelle"
+	},
+	"scrollToBottom": "Défiler jusqu'au bas du chat",
+	"about": "Générer, refactoriser et déboguer du code avec l'assistance de l'IA.<br />Consultez notre <DocsLink>documentation</DocsLink> pour en savoir plus.",
+	"onboarding": "Grâce aux dernières avancées en matière de capacités de codage agent, je peux gérer des tâches complexes de développement logiciel étape par étape. Avec des outils qui me permettent de créer et d'éditer des fichiers, d'explorer des projets complexes, d'utiliser le navigateur et d'exécuter des commandes de terminal (après votre autorisation), je peux vous aider de manières qui vont au-delà de la complétion de code ou du support technique. Je peux même utiliser MCP pour créer de nouveaux outils et étendre mes propres capacités.",
+	"rooTips": {
+		"boomerangTasks": {
+			"title": "Tâches Boomerang",
+			"description": "Divisez les tâches en parties plus petites et gérables."
+		},
+		"stickyModels": {
+			"title": "Modes persistants",
+			"description": "Chaque mode se souvient de votre dernier modèle utilisé"
+		},
+		"tools": {
+			"title": "Outils",
+			"description": "Permettez à l'IA de résoudre des problèmes en naviguant sur le Web, en exécutant des commandes, et plus encore."
+		},
+		"customizableModes": {
+			"title": "Modes personnalisables",
+			"description": "Des personas spécialisés avec leurs propres comportements et modèles assignés"
+		}
+	},
+	"selectMode": "Sélectionner le mode d'interaction",
+	"selectApiConfig": "Sélectionner la configuration de l'API",
+	"enhancePrompt": "Améliorer la requête avec un contexte supplémentaire",
+	"addImages": "Ajouter des images au message",
+	"sendMessage": "Envoyer le message",
+	"typeMessage": "Écrivez un message...",
+	"typeTask": "Écrivez votre tâche ici...",
+	"addContext": "@ pour ajouter du contexte, / pour changer de mode",
+	"dragFiles": "maintenir Maj pour glisser des fichiers",
+	"dragFilesImages": "maintenir Maj pour glisser des fichiers/images",
+	"enhancePromptDescription": "Le bouton 'Améliorer la requête' aide à améliorer votre demande en fournissant un contexte supplémentaire, des clarifications ou des reformulations. Essayez de taper une demande ici et cliquez à nouveau sur le bouton pour voir comment cela fonctionne.",
+	"errorReadingFile": "Erreur lors de la lecture du fichier :",
+	"noValidImages": "Aucune image valide n'a été traitée",
+	"separator": "Séparateur",
+	"edit": "Éditer...",
+	"forNextMode": "pour le prochain mode",
+	"error": "Erreur",
+	"diffError": {
+		"title": "Modification échouée"
+	},
+	"troubleMessage": "Agent rencontre des difficultés...",
+	"apiRequest": {
+		"title": "Requête API",
+		"failed": "Échec de la requête API",
+		"streaming": "Requête API...",
+		"cancelled": "Requête API annulée",
+		"streamingFailed": "Échec du streaming API"
+	},
+	"checkpoint": {
+		"initial": "Point de contrôle initial",
+		"regular": "Point de contrôle",
+		"initializingWarning": "Initialisation du point de contrôle en cours... Si cela prend trop de temps, tu peux désactiver les points de contrôle dans les <settingsLink>paramètres</settingsLink> et redémarrer ta tâche.",
+		"menu": {
+			"viewDiff": "Voir les différences",
+			"restore": "Restaurer le point de contrôle",
+			"restoreFiles": "Restaurer les fichiers",
+			"restoreFilesDescription": "Restaure les fichiers de votre projet à un instantané pris à ce moment.",
+			"restoreFilesAndTask": "Restaurer fichiers et tâche",
+			"confirm": "Confirmer",
+			"cancel": "Annuler",
+			"cannotUndo": "Cette action ne peut pas être annulée.",
+			"restoreFilesAndTaskDescription": "Restaure les fichiers de votre projet à un instantané pris à ce moment et supprime tous les messages après ce point."
+		},
+		"current": "Actuel"
+	},
+	"fileOperations": {
+		"wantsToRead": "Agent veut lire ce fichier :",
+		"wantsToReadOutsideWorkspace": "Agent veut lire ce fichier en dehors de l'espace de travail :",
+		"didRead": "Agent a lu ce fichier :",
+		"wantsToEdit": "Agent veut éditer ce fichier :",
+		"wantsToEditOutsideWorkspace": "Agent veut éditer ce fichier en dehors de l'espace de travail :",
+		"wantsToCreate": "Agent veut créer un nouveau fichier :",
+		"wantsToSearchReplace": "Agent veut effectuer une recherche et remplacement sur ce fichier :",
+		"didSearchReplace": "Agent a effectué une recherche et remplacement sur ce fichier :",
+		"wantsToInsert": "Agent veut insérer du contenu dans ce fichier :",
+		"wantsToInsertWithLineNumber": "Agent veut insérer du contenu dans ce fichier à la ligne {{lineNumber}} :",
+		"wantsToInsertAtEnd": "Agent veut ajouter du contenu à la fin de ce fichier :"
+	},
+	"instructions": {
+		"wantsToFetch": "Agent veut récupérer des instructions détaillées pour aider à la tâche actuelle"
+	},
+	"directoryOperations": {
+		"wantsToViewTopLevel": "Agent veut voir les fichiers de premier niveau dans ce répertoire :",
+		"didViewTopLevel": "Agent a vu les fichiers de premier niveau dans ce répertoire :",
+		"wantsToViewRecursive": "Agent veut voir récursivement tous les fichiers dans ce répertoire :",
+		"didViewRecursive": "Agent a vu récursivement tous les fichiers dans ce répertoire :",
+		"wantsToViewDefinitions": "Agent veut voir les noms de définitions de code source utilisés dans ce répertoire :",
+		"didViewDefinitions": "Agent a vu les noms de définitions de code source utilisés dans ce répertoire :",
+		"wantsToSearch": "Agent veut rechercher dans ce répertoire <code>{{regex}}</code> :",
+		"didSearch": "Agent a recherché dans ce répertoire <code>{{regex}}</code> :"
+	},
+	"commandOutput": "Sortie de commande",
+	"response": "Réponse",
+	"arguments": "Arguments",
+	"mcp": {
+		"wantsToUseTool": "Agent veut utiliser un outil sur le serveur MCP {{serverName}} :",
+		"wantsToAccessResource": "Agent veut accéder à une ressource sur le serveur MCP {{serverName}} :"
+	},
+	"modes": {
+		"wantsToSwitch": "Agent veut passer au mode <code>{{mode}}</code>",
+		"wantsToSwitchWithReason": "Agent veut passer au mode <code>{{mode}}</code> car : {{reason}}",
+		"didSwitch": "Agent est passé au mode <code>{{mode}}</code>",
+		"didSwitchWithReason": "Agent est passé au mode <code>{{mode}}</code> car : {{reason}}"
+	},
+	"subtasks": {
+		"wantsToCreate": "Agent veut créer une nouvelle sous-tâche en mode <code>{{mode}}</code> :",
+		"wantsToFinish": "Agent veut terminer cette sous-tâche",
+		"newTaskContent": "Instructions de la sous-tâche",
+		"completionContent": "Sous-tâche terminée",
+		"resultContent": "Résultats de la sous-tâche",
+		"defaultResult": "Veuillez continuer avec la tâche suivante.",
+		"completionInstructions": "Sous-tâche terminée ! Vous pouvez examiner les résultats et suggérer des corrections ou les prochaines étapes. Si tout semble bon, confirmez pour retourner le résultat à la tâche parente."
+	},
+	"questions": {
+		"hasQuestion": "Agent a une question :"
+	},
+	"taskCompleted": "Tâche terminée",
+	"powershell": {
+		"issues": "Il semble que vous rencontriez des problèmes avec Windows PowerShell, veuillez consulter ce"
+	},
+	"autoApprove": {
+		"title": "Auto-approbation :",
+		"none": "Aucune",
+		"description": "L'auto-approbation permet à PearAI Agent (Powered by Roo Code / Cline) d'effectuer des actions sans demander d'autorisation. Activez-la uniquement pour les actions auxquelles vous faites entièrement confiance. Configuration plus détaillée disponible dans les <settingsLink>Paramètres</settingsLink>."
+	},
+	"reasoning": {
+		"thinking": "Réflexion",
+		"seconds": "{{count}}s"
+	},
+	"followUpSuggest": {
+		"copyToInput": "Copier vers l'entrée (ou Shift + clic)"
+	},
+	"announcement": {
+		"title": "🎉 PearAI Agent (Powered by Roo Code / Cline) 3.15 est sortie",
+		"description": "Agent Code 3.15 apporte de nouvelles fonctionnalités et améliorations basées sur vos retours.",
+		"whatsNew": "Quoi de neuf",
+		"feature1": "<bold>Mise en cache des prompts pour Vertex</bold> : Ajout du support de mise en cache des prompts pour Vertex AI, améliorant les temps de réponse et réduisant les coûts API",
+		"feature2": "<bold>Solution de secours pour Terminal</bold> : Implémentation d'un mécanisme de secours lorsque l'intégration shell du terminal VSCode échoue",
+		"feature3": "<bold>Extraits de code améliorés</bold> : Rendu et interaction améliorés des extraits de code dans l'interface de chat",
+		"hideButton": "Masquer l'annonce",
+		"detailsDiscussLinks": "Obtenez plus de détails et participez aux discussions sur <discordLink>Discord</discordLink> et <redditLink>Reddit</redditLink> 🚀"
+	},
+	"browser": {
+		"rooWantsToUse": "Agent veut utiliser le navigateur :",
+		"consoleLogs": "Journaux de console",
+		"noNewLogs": "(Pas de nouveaux journaux)",
+		"screenshot": "Capture d'écran du navigateur",
+		"cursor": "curseur",
+		"navigation": {
+			"step": "Étape {{current}} sur {{total}}",
+			"previous": "Précédent",
+			"next": "Suivant"
+		},
+		"sessionStarted": "Session de navigateur démarrée",
+		"actions": {
+			"title": "Action de navigation : ",
+			"launch": "Lancer le navigateur sur {{url}}",
+			"click": "Cliquer ({{coordinate}})",
+			"type": "Saisir \"{{text}}\"",
+			"scrollDown": "Défiler vers le bas",
+			"scrollUp": "Défiler vers le haut",
+			"close": "Fermer le navigateur"
+		}
+	},
+	"systemPromptWarning": "AVERTISSEMENT : Remplacement d'instructions système personnalisées actif. Cela peut gravement perturber la fonctionnalité et provoquer un comportement imprévisible.",
+	"shellIntegration": {
+		"title": "Avertissement d'exécution de commande",
+		"description": "Votre commande est exécutée sans l'intégration shell du terminal VSCode. Pour supprimer cet avertissement, vous pouvez désactiver l'intégration shell dans la section <strong>Terminal</strong> des <settingsLink>paramètres de PearAI Agent (Powered by Roo Code / Cline)</settingsLink> ou résoudre les problèmes d'intégration du terminal VSCode en utilisant le lien ci-dessous.",
+		"troubleshooting": "Cliquez ici pour la documentation d'intégration shell."
+	}
+}

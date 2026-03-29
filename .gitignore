@@ -1,0 +1,17 @@
+node_modules/
+out/
+.build/
+dist/
+build/
+*.vsix
+*.js.map
+release/
+.cache/
+*.log
+.DS_Store
+__pycache__/
+*.pyc
+.env
+.vscode-test/
+coverage/
+.nyc_output/

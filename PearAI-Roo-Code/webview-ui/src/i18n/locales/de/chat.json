@@ -1,0 +1,242 @@
+{
+	"greeting": "Willkommen bei PearAI Agent (Powered by Roo Code / Cline)",
+	"task": {
+		"title": "Aufgabe",
+		"seeMore": "Mehr anzeigen",
+		"seeLess": "Weniger anzeigen",
+		"tokens": "Tokens:",
+		"cache": "Cache:",
+		"apiCost": "API-Kosten:",
+		"contextWindow": "Kontextfenster:",
+		"closeAndStart": "Aufgabe schließen und neue starten",
+		"export": "Aufgabenverlauf exportieren",
+		"delete": "Aufgabe löschen (Shift + Klick zum Überspringen der Bestätigung)"
+	},
+	"unpin": "Lösen von oben",
+	"pin": "Anheften",
+	"tokenProgress": {
+		"availableSpace": "Verfügbarer Speicher: {{amount}} Tokens",
+		"tokensUsed": "Verwendete Tokens: {{used}} von {{total}}",
+		"reservedForResponse": "Reserviert für Modellantwort: {{amount}} Tokens"
+	},
+	"retry": {
+		"title": "Wiederholen",
+		"tooltip": "Versuch erneut starten"
+	},
+	"startNewTask": {
+		"title": "Neue Aufgabe starten",
+		"tooltip": "Beginne eine neue Aufgabe"
+	},
+	"proceedAnyways": {
+		"title": "Trotzdem fortfahren",
+		"tooltip": "Während der Befehlsausführung fortfahren"
+	},
+	"save": {
+		"title": "Speichern",
+		"tooltip": "Dateiänderungen speichern"
+	},
+	"reject": {
+		"title": "Ablehnen",
+		"tooltip": "Diese Aktion ablehnen"
+	},
+	"completeSubtaskAndReturn": "Teilaufgabe abschließen und zurückkehren",
+	"approve": {
+		"title": "Genehmigen",
+		"tooltip": "Diese Aktion genehmigen"
+	},
+	"runCommand": {
+		"title": "Befehl ausführen",
+		"tooltip": "Diesen Befehl ausführen"
+	},
+	"proceedWhileRunning": {
+		"title": "Während Ausführung fortfahren",
+		"tooltip": "Trotz Warnungen fortfahren"
+	},
+	"killCommand": {
+		"title": "Befehl abbrechen",
+		"tooltip": "Aktuellen Befehl abbrechen"
+	},
+	"resumeTask": {
+		"title": "Aufgabe fortsetzen",
+		"tooltip": "Aktuelle Aufgabe fortsetzen"
+	},
+	"terminate": {
+		"title": "Beenden",
+		"tooltip": "Aktuelle Aufgabe beenden"
+	},
+	"cancel": {
+		"title": "Abbrechen",
+		"tooltip": "Aktuelle Operation abbrechen"
+	},
+	"scrollToBottom": "Zum Chat-Ende scrollen",
+	"about": "Generiere, überarbeite und debugge Code mit KI-Unterstützung.<br />Weitere Informationen findest du in unserer <DocsLink>Dokumentation</DocsLink>.",
+	"onboarding": "<strong>Deine Aufgabenliste in diesem Arbeitsbereich ist leer.</strong> Beginne mit der Eingabe einer Aufgabe unten. Du bist dir nicht sicher, wie du anfangen sollst? Lies mehr darüber, was Agent für dich tun kann, in <DocsLink>den Dokumenten</DocsLink>.",
+	"rooTips": {
+		"boomerangTasks": {
+			"title": "Bumerang-Aufgaben",
+			"description": "Teile Aufgaben in kleinere, überschaubare Teile auf."
+		},
+		"stickyModels": {
+			"title": "Sticky Modi",
+			"description": "Jeder Modus merkt sich dein zuletzt verwendetes Modell"
+		},
+		"tools": {
+			"title": "Tools",
+			"description": "Erlaube der KI, Probleme durch Surfen im Web, Ausführen von Befehlen und mehr zu lösen."
+		},
+		"customizableModes": {
+			"title": "Anpassbare Modi",
+			"description": "Spezialisierte Personas mit eigenem Verhalten und zugewiesenen Modellen"
+		}
+	},
+	"selectMode": "Interaktionsmodus auswählen",
+	"selectApiConfig": "API-Konfiguration auswählen",
+	"enhancePrompt": "Prompt mit zusätzlichem Kontext verbessern",
+	"addImages": "Bilder zur Nachricht hinzufügen",
+	"sendMessage": "Nachricht senden",
+	"typeMessage": "Nachricht eingeben...",
+	"typeTask": "Gib deine Aufgabe hier ein...",
+	"addContext": "@ für Kontext, / zum Moduswechsel",
+	"dragFiles": "Shift halten, um Dateien einzufügen",
+	"dragFilesImages": "Shift halten, um Dateien/Bilder einzufügen",
+	"enhancePromptDescription": "Die Schaltfläche 'Prompt verbessern' hilft, deine Anfrage durch zusätzlichen Kontext, Klarstellungen oder Umformulierungen zu verbessern. Versuche, hier eine Anfrage einzugeben und klicke erneut auf die Schaltfläche, um zu sehen, wie es funktioniert.",
+	"errorReadingFile": "Fehler beim Lesen der Datei:",
+	"noValidImages": "Keine gültigen Bilder wurden verarbeitet",
+	"separator": "Trennlinie",
+	"edit": "Bearbeiten...",
+	"forNextMode": "für nächsten Modus",
+	"error": "Fehler",
+	"diffError": {
+		"title": "Bearbeitung fehlgeschlagen"
+	},
+	"troubleMessage": "Agent hat Probleme...",
+	"apiRequest": {
+		"title": "API-Anfrage",
+		"failed": "API-Anfrage fehlgeschlagen",
+		"streaming": "API-Anfrage...",
+		"cancelled": "API-Anfrage abgebrochen",
+		"streamingFailed": "API-Streaming fehlgeschlagen"
+	},
+	"checkpoint": {
+		"initial": "Initialer Checkpoint",
+		"regular": "Checkpoint",
+		"initializingWarning": "Checkpoint wird noch initialisiert... Falls dies zu lange dauert, kannst du Checkpoints in den <settingsLink>Einstellungen</settingsLink> deaktivieren und deine Aufgabe neu starten.",
+		"menu": {
+			"viewDiff": "Unterschiede anzeigen",
+			"restore": "Checkpoint wiederherstellen",
+			"restoreFiles": "Dateien wiederherstellen",
+			"restoreFilesDescription": "Stellt die Dateien deines Projekts auf einen Snapshot zurück, der an diesem Punkt erstellt wurde.",
+			"restoreFilesAndTask": "Dateien & Aufgabe wiederherstellen",
+			"confirm": "Bestätigen",
+			"cancel": "Abbrechen",
+			"cannotUndo": "Diese Aktion kann nicht rückgängig gemacht werden.",
+			"restoreFilesAndTaskDescription": "Stellt die Dateien deines Projekts auf einen Snapshot zurück, der an diesem Punkt erstellt wurde, und löscht alle Nachrichten nach diesem Punkt."
+		},
+		"current": "Aktuell"
+	},
+	"instructions": {
+		"wantsToFetch": "Agent möchte detaillierte Anweisungen abrufen, um bei der aktuellen Aufgabe zu helfen"
+	},
+	"fileOperations": {
+		"wantsToRead": "Agent möchte diese Datei lesen:",
+		"wantsToReadOutsideWorkspace": "Agent möchte diese Datei außerhalb des Arbeitsbereichs lesen:",
+		"didRead": "Agent hat diese Datei gelesen:",
+		"wantsToEdit": "Agent möchte diese Datei bearbeiten:",
+		"wantsToEditOutsideWorkspace": "Agent möchte diese Datei außerhalb des Arbeitsbereichs bearbeiten:",
+		"wantsToCreate": "Agent möchte eine neue Datei erstellen:",
+		"wantsToSearchReplace": "Agent möchte in dieser Datei suchen und ersetzen:",
+		"didSearchReplace": "Agent hat Suchen und Ersetzen in dieser Datei durchgeführt:",
+		"wantsToInsert": "Agent möchte Inhalte in diese Datei einfügen:",
+		"wantsToInsertWithLineNumber": "Agent möchte Inhalte in diese Datei in Zeile {{lineNumber}} einfügen:",
+		"wantsToInsertAtEnd": "Agent möchte Inhalte am Ende dieser Datei anhängen:"
+	},
+	"directoryOperations": {
+		"wantsToViewTopLevel": "Agent möchte die Dateien auf oberster Ebene in diesem Verzeichnis anzeigen:",
+		"didViewTopLevel": "Agent hat die Dateien auf oberster Ebene in diesem Verzeichnis angezeigt:",
+		"wantsToViewRecursive": "Agent möchte rekursiv alle Dateien in diesem Verzeichnis anzeigen:",
+		"didViewRecursive": "Agent hat rekursiv alle Dateien in diesem Verzeichnis angezeigt:",
+		"wantsToViewDefinitions": "Agent möchte Quellcode-Definitionsnamen in diesem Verzeichnis anzeigen:",
+		"didViewDefinitions": "Agent hat Quellcode-Definitionsnamen in diesem Verzeichnis angezeigt:",
+		"wantsToSearch": "Agent möchte dieses Verzeichnis nach <code>{{regex}}</code> durchsuchen:",
+		"didSearch": "Agent hat dieses Verzeichnis nach <code>{{regex}}</code> durchsucht:"
+	},
+	"commandOutput": "Befehlsausgabe",
+	"response": "Antwort",
+	"arguments": "Argumente",
+	"mcp": {
+		"wantsToUseTool": "Agent möchte ein Tool auf dem {{serverName}} MCP-Server verwenden:",
+		"wantsToAccessResource": "Agent möchte auf eine Ressource auf dem {{serverName}} MCP-Server zugreifen:"
+	},
+	"modes": {
+		"wantsToSwitch": "Agent möchte zum <code>{{mode}}</code>-Modus wechseln",
+		"wantsToSwitchWithReason": "Agent möchte zum <code>{{mode}}</code>-Modus wechseln, weil: {{reason}}",
+		"didSwitch": "Agent hat zum <code>{{mode}}</code>-Modus gewechselt",
+		"didSwitchWithReason": "Agent hat zum <code>{{mode}}</code>-Modus gewechselt, weil: {{reason}}"
+	},
+	"subtasks": {
+		"wantsToCreate": "Agent möchte eine neue Teilaufgabe im <code>{{mode}}</code>-Modus erstellen:",
+		"wantsToFinish": "Agent möchte diese Teilaufgabe abschließen",
+		"newTaskContent": "Teilaufgabenanweisungen",
+		"completionContent": "Teilaufgabe abgeschlossen",
+		"resultContent": "Teilaufgabenergebnisse",
+		"defaultResult": "Bitte fahre mit der nächsten Aufgabe fort.",
+		"completionInstructions": "Teilaufgabe abgeschlossen! Du kannst die Ergebnisse überprüfen und Korrekturen oder nächste Schritte vorschlagen. Wenn alles gut aussieht, bestätige, um das Ergebnis an die übergeordnete Aufgabe zurückzugeben."
+	},
+	"questions": {
+		"hasQuestion": "Agent hat eine Frage:"
+	},
+	"taskCompleted": "Aufgabe abgeschlossen",
+	"powershell": {
+		"issues": "Es scheint, dass du Probleme mit Windows PowerShell hast, bitte sieh dir dies an"
+	},
+	"autoApprove": {
+		"title": "Automatische Genehmigung:",
+		"none": "Keine",
+		"description": "Automatische Genehmigung erlaubt PearAI Agent (Powered by Roo Code / Cline), Aktionen ohne Nachfrage auszuführen. Aktiviere dies nur für Aktionen, denen du vollständig vertraust. Detailliertere Konfiguration verfügbar in den <settingsLink>Einstellungen</settingsLink>."
+	},
+	"reasoning": {
+		"thinking": "Denke nach",
+		"seconds": "{{count}}s"
+	},
+	"followUpSuggest": {
+		"copyToInput": "In Eingabefeld kopieren (oder Shift + Klick)"
+	},
+	"announcement": {
+		"title": "🎉 PearAI Agent (Powered by Roo Code / Cline) 3.15 veröffentlicht",
+		"description": "Agent Code 3.15 bringt neue Funktionen und Verbesserungen basierend auf deinem Feedback.",
+		"whatsNew": "Was ist neu",
+		"feature1": "<bold>Prompt-Caching für Vertex</bold>: Prompt-Caching-Unterstützung für Vertex AI hinzugefügt, verbessert Antwortzeiten und reduziert API-Kosten",
+		"feature2": "<bold>Terminal-Fallback</bold>: Implementierung eines Fallback-Mechanismus, wenn die VSCode-Terminal-Shell-Integration fehlschlägt",
+		"feature3": "<bold>Verbesserte Code-Snippets</bold>: Verbesserte Darstellung und Interaktion mit Code-Snippets in der Chat-Oberfläche",
+		"hideButton": "Ankündigung ausblenden",
+		"detailsDiscussLinks": "Erhalte mehr Details und diskutiere auf <discordLink>Discord</discordLink> und <redditLink>Reddit</redditLink> 🚀"
+	},
+	"browser": {
+		"rooWantsToUse": "Agent möchte den Browser verwenden:",
+		"consoleLogs": "Konsolenprotokolle",
+		"noNewLogs": "(Keine neuen Protokolle)",
+		"screenshot": "Browser-Screenshot",
+		"cursor": "Cursor",
+		"navigation": {
+			"step": "Schritt {{current}} von {{total}}",
+			"previous": "Zurück",
+			"next": "Weiter"
+		},
+		"sessionStarted": "Browser-Sitzung gestartet",
+		"actions": {
+			"title": "Browser-Aktion: ",
+			"launch": "Browser starten auf {{url}}",
+			"click": "Klicken ({{coordinate}})",
+			"type": "Eingeben \"{{text}}\"",
+			"scrollDown": "Nach unten scrollen",
+			"scrollUp": "Nach oben scrollen",
+			"close": "Browser schließen"
+		}
+	},
+	"systemPromptWarning": "WARNUNG: Benutzerdefinierte Systemaufforderung aktiv. Dies kann die Funktionalität erheblich beeinträchtigen und zu unvorhersehbarem Verhalten führen.",
+	"shellIntegration": {
+		"title": "Befehlsausführungswarnung",
+		"description": "Dein Befehl wird ohne VSCode Terminal-Shell-Integration ausgeführt. Um diese Warnung zu unterdrücken, kannst du die Shell-Integration im Abschnitt <strong>Terminal</strong> der <settingsLink>PearAI Agent (Powered by Roo Code / Cline) Einstellungen</settingsLink> deaktivieren oder die VSCode Terminal-Integration mit dem Link unten beheben.",
+		"troubleshooting": "Klicke hier für die Shell-Integrationsdokumentation."
+	}
+}
