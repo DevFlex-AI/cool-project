@@ -46,12 +46,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Enable Corepack & set Yarn version
-        run: |
-          corepack enable
-          # Use the yarn version declared in package.json (Berry/3+)
-          corepack prepare --activate || true
-
       - name: Install Rosetta (for arm→x64 compat)
         run: softwareupdate --install-rosetta --agree-to-license || true
 
@@ -61,13 +55,20 @@ jobs:
         uses: actions/cache@v4
         with:
           path: pearai-app/node_modules
-          key: macos-x64-node-${{ hashFiles('pearai-app/package-lock.json', 'pearai-app/yarn.lock') }}
+          key: macos-x64-node-${{ hashFiles('pearai-app/package-lock.json') }}
           restore-keys: macos-x64-node-
 
       # ── Dependencies ─────────────────────────────────────────────────────────
       - name: Install root dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: npm install --legacy-peer-deps
+        run: npm install --ignore-scripts --legacy-peer-deps
+
+      - name: Run postinstall scripts manually
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: |
+          # Compile the build tools first so preinstall/postinstall scripts can run
+          node ./node_modules/gulp/bin/gulp.js --version || true
+          npm rebuild --legacy-peer-deps || true
 
       - name: Setup pearai-submodule
         run: |
@@ -82,22 +83,21 @@ jobs:
           npm run build
 
       # ── Compile ──────────────────────────────────────────────────────────────
-      - name: Create temporary keychain (for code signing)
+      - name: Create temporary keychain
         run: |
           security create-keychain -p pwd $RUNNER_TEMP/buildagent.keychain
           security default-keychain -s $RUNNER_TEMP/buildagent.keychain
           security unlock-keychain -p pwd $RUNNER_TEMP/buildagent.keychain
 
+      - name: Compile build tools
+        run: |
+          node ./node_modules/gulp/bin/gulp.js compile-build
+          node ./node_modules/gulp/bin/gulp.js compile-extensions-build
+
       - name: Compile PearAI
         run: |
           node ./node_modules/gulp/bin/gulp.js compile
           node ./node_modules/gulp/bin/gulp.js download-builtin-extensions || true
-
-      - name: Compile build tooling
-        run: |
-          npm --prefix build install --legacy-peer-deps || true
-          node ./node_modules/gulp/bin/gulp.js compile-build
-          node ./node_modules/gulp/bin/gulp.js compile-extensions-build
 
       # ── Package ──────────────────────────────────────────────────────────────
       - name: Package — macOS Intel .dmg
