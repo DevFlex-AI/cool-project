@@ -1,0 +1,181 @@
+name: Release — macOS Intel (x64)
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version (e.g. 1.0.0)'
+        required: true
+        default: '1.0.0'
+      create_release:
+        description: 'Create a GitHub Release after build?'
+        type: boolean
+        required: false
+        default: true
+
+jobs:
+  build-macos-intel:
+    name: Build macOS Intel (x64)
+    runs-on: macos-13        # macos-13 = Intel x64; macos-latest = Apple Silicon
+    timeout-minutes: 90
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      ELECTRON_SKIP_BINARY_DOWNLOAD: 0
+      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
+      npm_config_arch: x64
+      npm_config_target_arch: x64
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Rosetta (for any arm→x64 compat)
+        run: softwareupdate --install-rosetta --agree-to-license || true
+
+      # ── Caching ─────────────────────────────────────────────────────────────
+      - name: Compute node_modules cache key
+        id: cache-key
+        run: echo "key=$(node build/azure-pipelines/common/computeNodeModulesCacheKey.js)" >> $GITHUB_OUTPUT
+
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v4
+        with:
+          path: '**/node_modules'
+          key: macos-x64-node-${{ steps.cache-key.outputs.key }}
+          restore-keys: macos-x64-node-
+
+      - name: Get yarn cache dir
+        id: yarn-cache-dir
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache yarn
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.yarn-cache-dir.outputs.dir }}
+          key: macos-x64-yarn-${{ steps.cache-key.outputs.key }}
+          restore-keys: macos-x64-yarn-
+
+      # ── Dependencies ─────────────────────────────────────────────────────────
+      - name: Install root dependencies
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn install --network-timeout 180000
+
+      - name: Setup pearai-submodule
+        run: |
+          cd extensions/pearai-submodule
+          ./scripts/install-and-build.sh
+          git reset --hard
+        continue-on-error: false
+
+      - name: Setup PearAI-Roo-Code
+        run: |
+          cd extensions/PearAI-Roo-Code
+          npm run install:all
+          npm run build
+        continue-on-error: false
+
+      # ── Compile ──────────────────────────────────────────────────────────────
+      - name: Create temporary keychain (for code signing)
+        run: |
+          security create-keychain -p pwd $RUNNER_TEMP/buildagent.keychain
+          security default-keychain -s $RUNNER_TEMP/buildagent.keychain
+          security unlock-keychain -p pwd $RUNNER_TEMP/buildagent.keychain
+
+      - name: Compile PearAI
+        run: |
+          yarn npm-run-all --max-old-space-size=4095 -lp \
+            compile \
+            download-builtin-extensions
+
+      - name: Compile build tooling
+        run: |
+          yarn --cwd build compile
+          node ./node_modules/gulp/bin/gulp.js compile-build
+          node ./node_modules/gulp/bin/gulp.js compile-extensions-build
+
+      # ── Package ──────────────────────────────────────────────────────────────
+      - name: Package — macOS Intel .dmg
+        run: |
+          node ./node_modules/gulp/bin/gulp.js vscode-darwin-x64-min
+        env:
+          VSCODE_QUALITY: stable
+          VSCODE_ARCH: x64
+
+      - name: Create DMG archive
+        run: |
+          APP_NAME="PearAI"
+          BUILD_DIR=".build"
+          VERSION="${{ github.event.inputs.version }}"
+
+          # Find the built .app
+          APP_PATH=$(find "$BUILD_DIR" -name "*.app" -maxdepth 3 | head -1)
+          if [ -z "$APP_PATH" ]; then
+            echo "ERROR: Could not find .app bundle in $BUILD_DIR"
+            find "$BUILD_DIR" -maxdepth 4 | head -40
+            exit 1
+          fi
+
+          echo "Found app: $APP_PATH"
+
+          DMG_NAME="${APP_NAME}-${VERSION}-darwin-x64.dmg"
+
+          # Use hdiutil to create a proper DMG
+          hdiutil create \
+            -volname "$APP_NAME" \
+            -srcfolder "$APP_PATH" \
+            -ov \
+            -format UDZO \
+            "$DMG_NAME"
+
+          echo "DMG_PATH=$DMG_NAME" >> $GITHUB_ENV
+          echo "Created: $DMG_NAME"
+          ls -lh "$DMG_NAME"
+
+      # ── Upload Artifact ───────────────────────────────────────────────────────
+      - name: Upload DMG artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PearAI-${{ github.event.inputs.version }}-darwin-x64
+          path: ${{ env.DMG_PATH }}
+          retention-days: 14
+
+      # ── GitHub Release ────────────────────────────────────────────────────────
+      - name: Create GitHub Release
+        if: ${{ github.event.inputs.create_release == 'true' }}
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ github.event.inputs.version }}
+          name: PearAI v${{ github.event.inputs.version }} — macOS Intel
+          draft: false
+          prerelease: false
+          files: ${{ env.DMG_PATH }}
+          body: |
+            ## PearAI v${{ github.event.inputs.version }} — macOS Intel (x64)
+
+            ### Download
+            | Platform | File |
+            |----------|------|
+            | macOS Intel (x64) | `PearAI-${{ github.event.inputs.version }}-darwin-x64.dmg` |
+
+            ### What's included
+            - Updated LLM providers: xAI (Grok-2), Gemini 2.5, Claude 3.7, DeepSeek V3/R1, OpenAI o-series
+            - PearAI-Roo-Code agentic coding
+            - Full VS Code fork base
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
