@@ -19,6 +19,10 @@ jobs:
     runs-on: macos-15
     timeout-minutes: 90
 
+    defaults:
+      run:
+        working-directory: pearai-app   # all steps run inside pearai-app/
+
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       ELECTRON_SKIP_BINARY_DOWNLOAD: 0
@@ -54,7 +58,7 @@ jobs:
         id: cache-node-modules
         uses: actions/cache@v4
         with:
-          path: '**/node_modules'
+          path: pearai-app/**/node_modules
           key: macos-x64-node-${{ steps.cache-key.outputs.key }}
           restore-keys: macos-x64-node-
 
@@ -81,14 +85,12 @@ jobs:
           cd extensions/pearai-submodule
           ./scripts/install-and-build.sh
           git reset --hard
-        continue-on-error: false
 
       - name: Setup PearAI-Roo-Code
         run: |
           cd extensions/PearAI-Roo-Code
           npm run install:all
           npm run build
-        continue-on-error: false
 
       # ── Compile ──────────────────────────────────────────────────────────────
       - name: Create temporary keychain (for code signing)
@@ -111,8 +113,7 @@ jobs:
 
       # ── Package ──────────────────────────────────────────────────────────────
       - name: Package — macOS Intel .dmg
-        run: |
-          node ./node_modules/gulp/bin/gulp.js vscode-darwin-x64-min
+        run: node ./node_modules/gulp/bin/gulp.js vscode-darwin-x64-min
         env:
           VSCODE_QUALITY: stable
           VSCODE_ARCH: x64
@@ -123,7 +124,6 @@ jobs:
           BUILD_DIR=".build"
           VERSION="${{ github.event.inputs.version }}"
 
-          # Find the built .app
           APP_PATH=$(find "$BUILD_DIR" -name "*.app" -maxdepth 3 | head -1)
           if [ -z "$APP_PATH" ]; then
             echo "ERROR: Could not find .app bundle in $BUILD_DIR"
@@ -132,10 +132,8 @@ jobs:
           fi
 
           echo "Found app: $APP_PATH"
-
           DMG_NAME="${APP_NAME}-${VERSION}-darwin-x64.dmg"
 
-          # Use hdiutil to create a proper DMG
           hdiutil create \
             -volname "$APP_NAME" \
             -srcfolder "$APP_PATH" \
@@ -143,7 +141,7 @@ jobs:
             -format UDZO \
             "$DMG_NAME"
 
-          echo "DMG_PATH=$DMG_NAME" >> $GITHUB_ENV
+          echo "DMG_PATH=pearai-app/$DMG_NAME" >> $GITHUB_ENV
           echo "Created: $DMG_NAME"
           ls -lh "$DMG_NAME"
 
