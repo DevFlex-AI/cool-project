@@ -21,7 +21,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: pearai-app   # all steps run inside pearai-app/
+        working-directory: pearai-app
 
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -46,39 +46,28 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Rosetta (for any arm→x64 compat)
+      - name: Enable Corepack & set Yarn version
+        run: |
+          corepack enable
+          # Use the yarn version declared in package.json (Berry/3+)
+          corepack prepare --activate || true
+
+      - name: Install Rosetta (for arm→x64 compat)
         run: softwareupdate --install-rosetta --agree-to-license || true
 
       # ── Caching ─────────────────────────────────────────────────────────────
-      - name: Compute node_modules cache key
-        id: cache-key
-        run: echo "key=$(node build/azure-pipelines/common/computeNodeModulesCacheKey.js)" >> $GITHUB_OUTPUT
-
       - name: Cache node_modules
         id: cache-node-modules
         uses: actions/cache@v4
         with:
-          path: pearai-app/**/node_modules
-          key: macos-x64-node-${{ steps.cache-key.outputs.key }}
+          path: pearai-app/node_modules
+          key: macos-x64-node-${{ hashFiles('pearai-app/package-lock.json', 'pearai-app/yarn.lock') }}
           restore-keys: macos-x64-node-
-
-      - name: Get yarn cache dir
-        id: yarn-cache-dir
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-      - name: Cache yarn
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        uses: actions/cache@v4
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: macos-x64-yarn-${{ steps.cache-key.outputs.key }}
-          restore-keys: macos-x64-yarn-
 
       # ── Dependencies ─────────────────────────────────────────────────────────
       - name: Install root dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn install --network-timeout 180000
+        run: npm install --legacy-peer-deps
 
       - name: Setup pearai-submodule
         run: |
@@ -101,13 +90,12 @@ jobs:
 
       - name: Compile PearAI
         run: |
-          yarn npm-run-all --max-old-space-size=4095 -lp \
-            compile \
-            download-builtin-extensions
+          node ./node_modules/gulp/bin/gulp.js compile
+          node ./node_modules/gulp/bin/gulp.js download-builtin-extensions || true
 
       - name: Compile build tooling
         run: |
-          yarn --cwd build compile
+          npm --prefix build install --legacy-peer-deps || true
           node ./node_modules/gulp/bin/gulp.js compile-build
           node ./node_modules/gulp/bin/gulp.js compile-extensions-build
 
@@ -126,7 +114,7 @@ jobs:
 
           APP_PATH=$(find "$BUILD_DIR" -name "*.app" -maxdepth 3 | head -1)
           if [ -z "$APP_PATH" ]; then
-            echo "ERROR: Could not find .app bundle in $BUILD_DIR"
+            echo "ERROR: Could not find .app bundle"
             find "$BUILD_DIR" -maxdepth 4 | head -40
             exit 1
           fi
@@ -142,7 +130,6 @@ jobs:
             "$DMG_NAME"
 
           echo "DMG_PATH=pearai-app/$DMG_NAME" >> $GITHUB_ENV
-          echo "Created: $DMG_NAME"
           ls -lh "$DMG_NAME"
 
       # ── Upload Artifact ───────────────────────────────────────────────────────
