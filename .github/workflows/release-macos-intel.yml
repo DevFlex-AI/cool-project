@@ -1,166 +1,47 @@
-name: Release — macOS Intel (x64)
+name: Release macOS Intel
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Release version (e.g. 1.0.0)'
-        required: true
-        default: '1.0.0'
-      create_release:
-        description: 'Create a GitHub Release after build?'
-        type: boolean
-        required: false
-        default: true
+  push:
+    branches:
+      - main
 
 jobs:
-  build-macos-intel:
-    name: Build macOS Intel x64 (on macOS 15 runner)
-    runs-on: macos-15
-    timeout-minutes: 90
-
-    defaults:
-      run:
-        working-directory: pearai-app
-
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      ELECTRON_SKIP_BINARY_DOWNLOAD: 0
-      PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 1
-      npm_config_arch: x64
-      npm_config_target_arch: x64
+  build:
+    runs-on: macOS-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
         with:
-          submodules: recursive
+          submodules: 'recursive'
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Cache dependencies
+        uses: actions/cache@v2
         with:
-          node-version: "20.18.0"
+          path: | 
+            ~/.cache/pip
+            ~/.cargo/registry
+            ~/.cargo/git
+          key: ${{ runner.os }}-build-${{ hashFiles('**/Cargo.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
+      - name: Compile the project
+        run: |
+          mkdir -p build
+          cd build
+          cmake ..
+          make -j$(sysctl -n hw.logicalcpu)
+
+      - name: Package the application
+        run: |
+          cd build
+          make package
+          cp myapp.dmg ../
+
+      - name: Upload the DMG
+        uses: actions/upload-artifact@v2
         with:
-          python-version: '3.x'
-
-      - name: Install Rosetta (for arm→x64 compat)
-        run: softwareupdate --install-rosetta --agree-to-license || true
-
-      # ── Caching ─────────────────────────────────────────────────────────────
-      - name: Cache node_modules
-        id: cache-node-modules
-        uses: actions/cache@v4
-        with:
-          path: pearai-app/node_modules
-          key: macos-x64-node-${{ hashFiles('pearai-app/package-lock.json') }}
-          restore-keys: macos-x64-node-
-
-      # ── Dependencies ─────────────────────────────────────────────────────────
-      - name: Install root dependencies
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: npm install --ignore-scripts --legacy-peer-deps
-
-      - name: Run postinstall scripts manually
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: |
-          # Compile the build tools first so preinstall/postinstall scripts can run
-          node ./node_modules/gulp/bin/gulp.js --version || true
-          npm rebuild --legacy-peer-deps || true
-
-      - name: Setup pearai-submodule
-        run: |
-          cd extensions/pearai-submodule
-          ./scripts/install-and-build.sh
-          git reset --hard
-
-      - name: Setup PearAI-Roo-Code
-        run: |
-          cd extensions/PearAI-Roo-Code
-          npm run install:all
-          npm run build
-
-      # ── Compile ──────────────────────────────────────────────────────────────
-      - name: Create temporary keychain
-        run: |
-          security create-keychain -p pwd $RUNNER_TEMP/buildagent.keychain
-          security default-keychain -s $RUNNER_TEMP/buildagent.keychain
-          security unlock-keychain -p pwd $RUNNER_TEMP/buildagent.keychain
-
-      - name: Compile build tools
-        run: |
-          node ./node_modules/gulp/bin/gulp.js compile-build
-          node ./node_modules/gulp/bin/gulp.js compile-extensions-build
-
-      - name: Compile PearAI
-        run: |
-          node ./node_modules/gulp/bin/gulp.js compile
-          node ./node_modules/gulp/bin/gulp.js download-builtin-extensions || true
-
-      # ── Package ──────────────────────────────────────────────────────────────
-      - name: Package — macOS Intel .dmg
-        run: node ./node_modules/gulp/bin/gulp.js vscode-darwin-x64-min
-        env:
-          VSCODE_QUALITY: stable
-          VSCODE_ARCH: x64
-
-      - name: Create DMG archive
-        run: |
-          APP_NAME="PearAI"
-          BUILD_DIR=".build"
-          VERSION="${{ github.event.inputs.version }}"
-
-          APP_PATH=$(find "$BUILD_DIR" -name "*.app" -maxdepth 3 | head -1)
-          if [ -z "$APP_PATH" ]; then
-            echo "ERROR: Could not find .app bundle"
-            find "$BUILD_DIR" -maxdepth 4 | head -40
-            exit 1
-          fi
-
-          echo "Found app: $APP_PATH"
-          DMG_NAME="${APP_NAME}-${VERSION}-darwin-x64.dmg"
-
-          hdiutil create \
-            -volname "$APP_NAME" \
-            -srcfolder "$APP_PATH" \
-            -ov \
-            -format UDZO \
-            "$DMG_NAME"
-
-          echo "DMG_PATH=pearai-app/$DMG_NAME" >> $GITHUB_ENV
-          ls -lh "$DMG_NAME"
-
-      # ── Upload Artifact ───────────────────────────────────────────────────────
-      - name: Upload DMG artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: PearAI-${{ github.event.inputs.version }}-darwin-x64
-          path: ${{ env.DMG_PATH }}
-          retention-days: 14
-
-      # ── GitHub Release ────────────────────────────────────────────────────────
-      - name: Create GitHub Release
-        if: ${{ github.event.inputs.create_release == 'true' }}
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: v${{ github.event.inputs.version }}
-          name: PearAI v${{ github.event.inputs.version }} — macOS Intel
-          draft: false
-          prerelease: false
-          files: ${{ env.DMG_PATH }}
-          body: |
-            ## PearAI v${{ github.event.inputs.version }} — macOS Intel (x64)
-
-            ### Download
-            | Platform | File |
-            |----------|------|
-            | macOS Intel (x64) | `PearAI-${{ github.event.inputs.version }}-darwin-x64.dmg` |
-
-            ### What's included
-            - Updated LLM providers: xAI (Grok-2), Gemini 2.5, Claude 3.7, DeepSeek V3/R1, OpenAI o-series
-            - PearAI-Roo-Code agentic coding
-            - Full VS Code fork base
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          name: myapp.dmg
+          path: ../myapp.dmg
